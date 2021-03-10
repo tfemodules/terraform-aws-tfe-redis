@@ -1,0 +1,29 @@
+driver:
+  name: terraform
+  root_module_directory: test/fixtures
+  variable_files:
+    - test/fixtures/test.tfvars
+  variables:
+    redis_auth_token: redis-auth-token
+  verify_version: false # ignore kitchen-terraform supported terraform version check
+
+provisioner:
+  name: terraform
+
+verifier:
+  name: terraform
+
+platforms:
+  - name: aws/redis
+    verifier:
+      color: true
+      systems:
+        - name: remote
+          backend: ssh
+          user: ubuntu
+          hosts_output: test_instance_public_ip
+          key_files:
+            - ./test/assets/kitchen-test/
+
+suites:
+  - name: default
