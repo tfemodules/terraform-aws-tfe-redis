@@ -1,0 +1,5 @@
+---
+name: default
+title: Verify AWS Redis
+summary: Performs basic checks on the module.
+version: 0.1.0
